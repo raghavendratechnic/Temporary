@@ -1,0 +1,86 @@
+<p class="mesCFO">Iframe Code Generator Tool</p>
+
+<div id="main-body" class="Tbody">
+  <b>URL</b>
+  <input id="Iurl" placeholder="Enter Your URL Here..." value="https://techyzipper.blogspot.com/">
+
+  <b>Width</b>
+  <input id="Iwidth" placeholder="Enter Width Here..." value="100">
+
+  <b>Height</b>
+  <input id="Iheight" placeholder="Enter Height Here..." value="245">
+
+  <b>Frame Border</b>
+  <input id="Iborder" placeholder="Enter Border Here..." value="0">
+
+  <b>Scrolling</b>
+  <select id="Iscrolling">
+    <option value="yes">Yes</option>
+    <option value="no" selected>No</option>
+  </select>
+
+  <b>Full Screen</b>
+  <select id="Ifullscreen">
+    <option value=" allowfullscreen" selected>Allow</option>
+    <option value="">Not Allow</option>
+  </select>
+
+  <button type="button" id="Gbutton">Generate<span class="fa fa-hand-o-right"></span></button>
+
+  <textarea id="Icode" rows="5" placeholder="Get Iframe Code Here..." readonly></textarea>
+
+  <button id="copybutton" type="button" class="copybutton" data-clipboard-target="#Icode"><span class="fa fa-files-o"></span>Copy Code</button>
+
+  <button type="button" id="Tanother"><i class="fa fa-repeat"></i>Try Another</button>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://clipboardjs.com/dist/clipboard.min.js"></script>
+<script src="https://kit.fontawesome.com/4ad360bfd2.js"></script>
+
+<script>
+  $(function() {
+    $('#Gbutton').click(function() {
+      var url = $('#Iurl').val();
+      var width = $('#Iwidth').val();
+      var height = $('#Iheight').val();
+      var border = $('#Iborder').val();
+      var scrolling = $('#Iscrolling').val();
+      var fullscreen = $('#Ifullscreen').val();
+      $('#Icode').val(
+        '<iframe src="' +
+          url +
+          '" width="' +
+          width +
+          '%" height="' +
+          height +
+          'px" frameborder="' +
+          border +
+          '" scrolling="' +
+          scrolling +
+          '"' +
+          fullscreen +
+          '></iframe>'
+      );
+    });
+  });
+
+  $(function() {
+    var clipboard = new ClipboardJS('.copybutton');
+    $('.copybutton').click(function() {
+      $(this).html("<span class='fa fa-check'></span>Code Copied");
+      var that = $(this);
+      var intrvrl = setInterval(function() {
+        that.html("<span class='fa fa-files-o'></span>Copy Code");
+        clearInterval(intrvrl);
+      }, 1500);
+    });
+  });
+
+  $(function() {
+    $('#Tanother').click(function() {
+      $('#Iurl').val('');
+      $('#Icode').val('');
+    });
+  });
+</script>
