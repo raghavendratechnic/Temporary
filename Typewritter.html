@@ -1,0 +1,66 @@
+<style>
+.h-animate .typW{
+  position: relative;
+  font-weight: 400;
+}
+
+.h-animate .typW.sec-text{
+  color: var(--linkC);
+  font-weight: bold;
+}
+
+.typW.sec-text:before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--bodyB);
+  border-left: 1.7px solid var(--linkC);
+  animation: animate 4s steps(12) infinite;
+}
+
+@keyframes animate{
+    40%, 60%{left: calc(100% + 4px);}
+    100%{left: 0%;}
+}
+  
+.drK .h-animate .typW.sec-text{
+  color: var(--darkU);
+}
+  
+.drK .typW.sec-text:before{
+  background-color: var(--darkB);
+  border-color: var(--darkU);
+}
+</style>
+
+<div class="h-text">
+  <div class="h-animate">
+    <span class="typW fir-text">I'm a </span>
+    <span class="typW sec-text">${txtLoad}</span>
+  </div>
+</div>
+
+<script>
+  const typWriter = document.querySelector(".sec-text");
+
+  const textLoad = () => {
+    setTimeout(() => {
+      typWriter.textContent = "Developer";
+    }, 0);
+    setTimeout(() => {
+      typWriter.textContent = "Freelancer";
+    }, 4000);
+    setTimeout(() => {
+      typWriter.textContent = "Designer";
+    }, 8000);
+    setTimeout(() => {
+      typWriter.textContent = "Hacking";
+    }, 12000);
+  };
+
+  textLoad();
+  setInterval(textLoad, 16000);
+</script>
