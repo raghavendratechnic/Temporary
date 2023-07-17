@@ -1,0 +1,30 @@
+<!--[ Notification only for PC or LapTop ]-->
+
+<p>Notification Permission <b>Allowed</b> After Refresh page, for Refresh page click the below button.</p> 
+
+<div class="button" onclick="location.reload()">use me for Refresh current page</div>
+
+<script>
+if (Notification.permission !== 'granted') {
+  Notification.requestPermission();
+}
+
+function sendNotification(title, options) {
+  if (Notification.permission === 'granted') {
+    var notification = new Notification(title, options);
+
+    notification.onclick = function(event) {
+      event.preventDefault();
+      // Perform action on notification click, e.g., redirect to the new post URL
+      window.open('https://raghavendratechnic.blogspot.com/2023/05/how-to-make-console-in-html.html', '_blank');
+      notification.close();
+    };
+  }
+}
+
+// Usage example
+sendNotification('How to make Console in HTML', {
+  body: 'New Post has been Uploaded. Check it out!',
+  icon: 'https://raw.githubusercontent.com/raghavendratechnic/web-m.rtw/main/RTW-WEB.png' // Optional: You can provide a path to an icon image
+});
+</script>
