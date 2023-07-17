@@ -1,0 +1,36 @@
+<h1>Text Repeater</h1>
+<label for="count">Count:</label>
+<input type="number" id="count"><br><br>
+<label for="text">Text:</label>
+<input type="text" id="text"><br><br>
+<button onclick="repeatText()">Repeat</button>
+<button onclick="copyOutput()">Copy</button><br><br>
+<label for="output">Output:</label>
+<textarea id="output" rows="5" cols="30"></textarea>
+
+<script>
+  function repeatText() {
+    var count = document.getElementById('count').value;
+    var text = document.getElementById('text').value;
+    var output = '';
+
+    for (var i = 0; i < count; i++) {
+      output += text;
+        
+      if (i < count - 1) {
+        output += '\n';
+      }
+    }
+
+    document.getElementById('output').value = output;
+  }
+    
+  function copyOutput() {
+    var output = document.getElementById('output');
+    output.select();
+    document.execCommand('copy');
+    toastNotif('Copied to clipboard!');
+  }
+</script>
+
+  
