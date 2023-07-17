@@ -1,0 +1,130 @@
+<style>#mobile-menu,.tMK,.wvC,.mP,.fS,.fR,.eD,.toTopB,.brdCmb,.mnBrs,.navS,.mainWrp::after,.pGV,.error,.mobile-menu,.main-wrapper, mobile-menu,.breadcrumbs,.postTitle,.adB, .itm,footer, header,.headIn,.navIn,.navbar,.ntfC,.ancrCn{display:none} 
+  
+fieldset {
+  position: relative;
+  padding: 0.2em 1em;
+  border: 1px solid #eceff1;
+  font-size: 14px;
+  border-radius: 10px;
+  line-height: 1.8em;
+}
+
+fieldset legend{
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0;
+  padding: 2px 14px;
+  background-color: #fefefe;
+  border: 1px solid #e6e6e6;
+  border-radius: .5rem;
+  position: absolute;
+  top: -18px;
+  left:20px
+}
+  
+fieldset legend:last-child {
+ margin-bottom: 25px;
+}
+  
+.yXy {
+  left:255px;
+}
+  
+.yXy:hover{
+  background: var(--synxBg);
+}
+  
+.font_C {
+  font-size:1.072rem;
+}
+  
+.button-container {
+  display: flex;
+  margin: 30px 0 50px 0;transition: .5s;
+}
+
+.buttonE {
+  flex: 1;
+  padding: 10px;
+  background: var(--linkC);
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-weight: bold;
+  border: 2px solid transparent;
+  transition: .5s;
+  outline: none;
+}
+  
+.buttonE:not(:hover) {
+  background: var(--linkC);
+}
+  
+.buttonE:hover {
+  background: var(--contentB);
+  color: var(--linkC);
+  border-color: var(--linkC);
+  transform:scale(0.97)
+}
+
+.buttonE a {
+  color: white !important;
+}
+  
+.buttonE:hover a {
+  color: var(--linkC) !important;
+}  
+</style>
+
+    <h4>Hello World!</h4>
+<div class=font_C style=font-weight:500;>Welcome to <b>Gmail API</b> for sending emails <br>with your own email address!</div>
+  
+<div class="button-container">
+    <button class="buttonE"><a href="https://telegra.ph/Donate-Us-08-29">Donate Us</a></button>
+    <button class="buttonE"><a href="https://jobianstechie.t.me">Contact Us</a></button>
+    </div>
+    <fieldset>
+        <legend>How to use</legend>
+        <p>Just send a POST request to <b>https://gmailapi.vercel.app</b> with a body that contains these parameters: <b>sender</b>, <b>password</b>, <b>recipient</b>, <b>subject</b>, and <b>message</b>.</p>
+        <h4>Parameters and description</h4>
+        <p>
+            1. sender = your Gmail address<br>
+            2. password = Gmail app password <a href="/help">learn more</a><br>
+            3. recipient = receiver email address<br>
+            4. subject = email subject<br>
+            5. message = message (HTML allowed)
+        </p>
+    </fieldset>
+    <p></p>
+    <fieldset style="background: var(--synxBg);">
+    <legend>Example in BJS</legend>
+    <div style="margin: 1.7em auto; font-family: var(--fontC); white-space: pre-wrap;" id="cUk">HTTP.post({
+ url: "https://gmailapi.vercel.app",
+ success: "onsuccess",
+ body: { 
+  sender: "hello@gmail.com",            
+  password: "dfezbchlnvryacfi",
+  recipient: "hii@gmail.com",  
+  subject: "Subject here",
+  message: "Simple message here (HTML allowed)."  
+ }
+})</div>
+    <legend class="yXy" id="copyBtn">Click to Copy</legend>
+</fieldset>
+
+<script>
+    const copyBtn = document.getElementById("copyBtn");
+    const codeEl = document.getElementById("cUk");
+
+    copyBtn.addEventListener("click", () => {
+        const range = document.createRange();
+        range.selectNode(codeEl);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand("copy");
+        copyBtn.innerHTML = "Copied Codes";
+        toastNotif("Your output codes have been copied to the clipboard!");
+        vibRate(50);
+        window.getSelection().removeAllRanges();
+    });
+</script>
