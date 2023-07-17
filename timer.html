@@ -1,0 +1,22 @@
+<h1>Button Timer</h1>
+<button id="myButton" onclick="startTimer()">Start Timer ⏳</button>
+<p id="timer"></p>
+
+<script>
+function startTimer() {
+  var button = document.getElementById("myButton");
+  button.style.display = "none"; // Hide the button initially
+  var timeLeft = 99; // Set the timer duration in seconds
+  var redirectLink = "/your-link.html"; // Replace 'your-link' with the actual link you want to redirect to
+  var countdown = setInterval(function() {
+  document.getElementById("timer").innerHTML = "to Redirect Link " + timeLeft + " seconds remaining";
+  timeLeft--;
+            
+  if (timeLeft < 0) {
+   clearInterval(countdown);
+   document.getElementById("timer").innerHTML = "Time's up!";
+   window.location.href = redirectLink;
+  }
+ }, 1000); // Update the timer every second
+}
+</script>
