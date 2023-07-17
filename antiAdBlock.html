@@ -1,0 +1,113 @@
+<style>
+  .popSc {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: #f3f5fe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .popSc.hidden {
+    display: none;
+  }
+  .popSc .popBo {
+    position: relative;
+    background: #fff;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 30px;
+  }
+  .popSc .popBo svg {
+    display: block;
+    width: 50px;
+    height: 50px;
+    fill: none !important;
+    stroke: #08102b;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.5;
+  }
+  .popSc .popBo h2 {
+    margin: 10px 0 15px 0;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #08102b;
+  }
+  .popSc .popBo p {
+    margin: 0;
+    line-height: 1.7em;
+    font-size: 0.9rem;
+    color: #08102b;
+  }
+  .darkMode .popSc {
+    background: #1f1f1f;
+  }
+  .darkMode .popSc .popBo {
+    background: #2c2d31;
+  }
+  .darkMode .popSc .popBo svg {
+    stroke: #fefefe;
+  }
+  .darkMode .popSc .popBo p,
+  .darkMode .popSc .popBo h2 {
+    color: #fefefe;
+  }
+  .closeButton {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .closeButton:before,
+  .closeButton:after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 16px;
+    background-color: #08102b;
+    transform: rotate(45deg);
+  }
+  .closeButton:before {
+    transform: rotate(-45deg);
+  }
+  .closeButton::before:hover {
+    transform: rotate(10deg);
+  }
+  .closeButton::after:hover {
+    transform: rotate(-10deg);
+  }
+</style>
+
+<div class="popSc hiddenR" id="antiAdBlock">
+  <div class="popBo">
+    <span class="closeButton"></span>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+    <h2>Ad-Blocker Detected!</h2>
+    <p>Sorry, we detected that you have activated Ad-Blocker.<br/>Please consider supporting us by disabling your Ad-Blocker, it helps us in developing this Website.<br/>Thank you!</p>
+  </div>
+</div>
+
+<script>
+  const openButton = document.getElementById('tgButton');
+  const closeButton = document.querySelector('.closeButton');
+  const antiAdBlock = document.getElementById('antiAdBlock');
+
+  closeButton.addEventListener('click', function() {
+    antiAdBlock.classList.add('hidden');
+  });
+  
+  openButton.addEventListener('click', function() {
+    antiAdBlock.classList.remove('hidden');
+  });
+</script>
