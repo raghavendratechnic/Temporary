@@ -1,0 +1,16 @@
+<div class="button" onclick="openConsole()">Open Console</div>
+<script>
+// Function to open the developer console
+function openConsole() {
+  // Retrieve the content you want to display in the new window from the 'postBody' element
+  const df = document.getElementById('postBody').innerHTML;
+  const LHSDc = df.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  // Open a new window and write the content in it
+  const newWindow = window.open('', '_blank');
+  newWindow.document.write('<pre style="word-wrap: break-word; white-space: pre-wrap;">' + LHSDc + '</pre>');
+}
+
+// Call the function to open the console when the page loads
+window.onload = openConsole;
+</script>
