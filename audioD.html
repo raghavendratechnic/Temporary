@@ -1,0 +1,82 @@
+<audio id="myAudio" controls>
+  <source src="https://github.com/raghavendratechnic/musicPlayer/raw/main/music/15.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
+
+<!-- Element to display the current volume percentage -->
+<div id="volumeDisplay">Current Volume: {{volumeDisplay}}</div>
+
+<!-- Input to set the volume manually -->
+<input type="number" id="volumeInput" placeholder="Enter volume percentage">
+
+<script>
+  // Function to update the volume display and save the volume percentage to localStorage
+  function updateVolumeDisplay() {
+    const currentVolumePercentage = Math.round(audioElement.volume * 100);
+    if (audioElement.muted) {
+      volumeDisplay.textContent = `Current Volume: ${currentVolumePercentage}% (Muted)`;
+    } else {
+      volumeDisplay.textContent = `Current Volume: ${currentVolumePercentage}%`;
+    }
+
+    // Save the volume percentage to localStorage
+    localStorage.setItem("volumePercentage", currentVolumePercentage);
+  }
+
+  // Function to set volume based on user input
+  function setVolumeFromInput() {
+    const inputVolumePercentage = parseInt(volumeInput.value);
+    if (!isNaN(inputVolumePercentage) && inputVolumePercentage >= 0 && inputVolumePercentage <= 100) {
+      audioElement.volume = inputVolumePercentage / 100;
+      updateVolumeDisplay();
+    } else {
+      alert("Please enter a valid volume percentage (0-100).");
+    }
+  }
+
+  // Function to increase volume
+  function increaseVolume() {
+    if (audioElement.volume < 1.0) {
+      audioElement.volume += 0.1; // Increase volume by 0.1 (10%)
+      updateVolumeDisplay();
+    }
+  }
+
+  // Function to decrease volume
+  function decreaseVolume() {
+    if (audioElement.volume > 0) {
+      audioElement.volume -= 0.1; // Decrease volume by 0.1 (10%)
+      updateVolumeDisplay();
+    }
+  }
+
+  // Function to toggle mute status
+  function toggleMute() {
+    audioElement.muted = !audioElement.muted;
+    updateMuteStatus();
+  }
+
+  // Retrieve the previously saved volume percentage from localStorage
+  const savedVolumePercentage = localStorage.getItem("volumePercentage");
+
+  // Get references to the audio element and other elements after the audio has loaded
+  const audioElement = document.getElementById("myAudio");
+  const volumeDisplay = document.getElementById("volumeDisplay");
+  const volumeInput = document.getElementById("volumeInput");
+
+  // Set the initial volume and mute status display
+  if (savedVolumePercentage !== null) {
+    audioElement.volume = parseInt(savedVolumePercentage) / 100;
+    volumeInput.value = savedVolumePercentage;
+  }
+  updateVolumeDisplay();
+
+  // Add event listeners to the input and audio element
+  volumeInput.addEventListener("input", setVolumeFromInput);
+
+  // Update the volume display when the audio volume is changed using other controls
+  audioElement.addEventListener("volumechange", updateVolumeDisplay);
+
+  // Update the mute status when the audio is muted or unmuted
+  audioElement.addEventListener("volumechange", updateMuteStatus);
+</script>
