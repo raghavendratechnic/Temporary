@@ -1,0 +1,31 @@
+<h1>Email Message Simulation</h1>
+<p>Generated Email: <span id="randomEmail"></span></p>
+<button onclick="generateRandomEmail()">Generate Email</button>
+<div id="messageContainer"></div>
+
+<script>
+  function generateRandomEmail() {
+      if (!localStorage.getItem('randomEmail')) {
+          const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+          let randomEmail = '';
+          for (let i = 0; i < 10; i++) {
+              randomEmail += characters[Math.floor(Math.random() * characters.length)];
+          }
+          randomEmail += '@example.com';
+          localStorage.setItem('randomEmail', randomEmail);
+          document.getElementById('randomEmail').textContent = randomEmail;
+      } else {
+          document.getElementById('randomEmail').textContent = localStorage.getItem('randomEmail');
+      }
+  }
+
+  function sendMessage() {
+      const email = localStorage.getItem('randomEmail');
+      const message = prompt('Enter your message:');
+      if (message) {
+          const messageElement = document.createElement('p');
+          messageElement.textContent = '[' + email + ']: ' + message;
+          document.getElementById('messageContainer').appendChild(messageElement);
+      }
+  }
+</script>
