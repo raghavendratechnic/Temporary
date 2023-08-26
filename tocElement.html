@@ -1,0 +1,86 @@
+<style>
+.box,
+.boxM,
+.boxHeadeR {
+  padding: 10px 20px;
+  font-size: 14px;
+  width: 100%;
+  word-break: break-all;
+  border: 1px solid #0000000d;
+  background: var(--contentB);
+}
+
+.box {
+  border-radius: 0 0 8px 8px;
+  margin: -1px 0; 
+  margin-bottom: 20px;
+  box-shadow: 0 5px 35px rgb(0 0 0/7%);
+}
+
+.boxM {
+  border-radius: 0;
+  margin: -1px 0; 
+  height: 250px;
+  overflow-y: scroll;
+  padding: 5px;
+}
+
+.boxHeadeR {
+  border-radius: 8px 8px 0 0;
+  border-bottom: none;
+  z-index: 1;
+}
+
+.drK .box,
+.drK .boxHeadeR,
+.drK .boxM {
+  background: var(--darkB);
+  border: 1px solid var(--darkBl);
+}
+  
+.fix {
+  position: fixed;
+  z-index:55;
+  width:91%;
+  max-width: 550px;
+  top:280px;
+}
+ 
+.boxM ul {
+  list-style-type: none;
+  padding-left: 20px;
+  counter-reset: section;
+}
+
+.boxM li {
+  margin-bottom: 10px;
+  counter-increment: section;
+}
+
+.boxM li::before {
+  content: counter(section) ". ";
+  font-weight: bold;
+  margin-right: 5px;  
+}
+
+.box div{
+  color: var(--linkB);
+  text-align: right;
+}
+
+.drK .box div {
+  color:var(--darkU)
+}
+</style>
+
+<div class="fix hidden">
+  <div class="boxHeadeR font_CR">Table of contents</div>
+  <div class="boxM">
+    <ul>
+      <li><a href="#adhaarNumber">Aadhaar Number</a></li>
+      <li><a href="#bloggerApi">Blogger Api</a></li>
+      <li><a href="#dMode">Toggle Dark Mode</a></li>
+    </ul>
+  </div>
+  <div class="box"><div>Close</div></div>
+</div>
