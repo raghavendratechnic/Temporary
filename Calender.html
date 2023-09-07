@@ -1,0 +1,53 @@
+<input id="yE" type="number" placeholder="Year">
+  <input id="mO" type="number" placeholder="Month">
+  <input id="h" type="number" placeholder="Highlight Date">
+  <button id="generateButton">Generate Calendar</button>
+  <pre id="calendar"></pre>
+
+  <script>
+    function generateCalendar(year, month, highlightDay) {
+      const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      const date = new Date(year, month - 1, 1);
+      const firstDay = date.getDay();
+      const daysInMonth = new Date(year, month, 0).getDate();
+
+      let calendar = '';
+
+      // Add month and year header
+      calendar += `${year}-${month}\n`;
+
+      // Add weekday headers
+      calendar += weekdays.join(' ') + '\n';
+
+      // Add empty cells before the first day
+      calendar += '   '.repeat(firstDay);
+
+      // Add days
+      for (let day = 1; day <= daysInMonth; day++) {
+        if (day === highlightDay) {
+          calendar += `<span style="background-color: orange;">${day.toString().padStart(2, ' ')}</span> `;
+        } else {
+          calendar += `${day.toString().padStart(2, ' ')} `;
+        }
+
+        // Add line break for the next week
+        if ((day + firstDay) % 7 === 0) {
+          calendar += '\n';
+        }
+      }
+
+      return calendar;
+    }
+
+    document.getElementById('generateButton').addEventListener('click', function() {
+      const year = document.getElementById('yE').value;
+      const month = document.getElementById('mO').value;
+      const daY = document.getElementById('h').value
+      const highlightDay = parseInt(daY);
+      const selectedDate = new Date(year, month - 1, highlightDay);
+      const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const highlightedDay = weekdays[selectedDate.getDay()];
+      const calendarText = generateCalendar(year, month, highlightDay);
+      document.getElementById('calendar').innerHTML = calendarText + daY + ' is ' + highlightedDay;
+    });
+  </script>
