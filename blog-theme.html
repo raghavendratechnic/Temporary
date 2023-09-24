@@ -1,0 +1,54 @@
+<input id="blogId" type="number" value="5930079946759346136">&nbsp;<button id="clear" style="display: none" onclick="clearInput()">$_clear</button>
+<div class="pre" data-file="Template Download" data-text=".theme_link">
+  <pre id="output">blogId.value is Blank</pre>
+</div><div id="blogName"></div>
+<button class="remH hidden"></button>
+
+<script>
+function complete() {
+  var blogId = document.getElementById('blogId').value;
+  var nuBl = blogId || "null";
+  var output = document.getElementById('output');
+  var openLink = document.querySelector('.remH');
+  var clearButton = document.getElementById('clear');
+  var yXy = document.getElementById('blogName');
+  var ggtt = `https://www.googleapis.com/blogger/v3/blogs/${blogId}?key=AIzaSyCIIqYVYfcSkRdMMzfMuVgII_0V6UcYSL0`; // Replace with your actual API key
+
+  // Make an HTTP request to the ggtt URL
+  fetch(ggtt)
+    .then(response => response.json())
+    .then(data => {
+      // Display the response data in the yXy element
+      if (blogId.length >= 10) {
+        var outR = `https://www.blogger.com/blogger-nongwt.g?blogID=${nuBl}&action=download`;
+        output.innerHTML = outR;
+        openLink.classList.remove('hidden');
+        openLink.innerHTML = `<a style="color:inherit" href="${outR}" target="_blank">.open</a>`;
+        yXy.innerHTML = `Blog Name: <b>${data.name}</b>,<br>Blog Id: <b>${data.id}</b>.`; // JSON.stringify(data, null, 2)
+      } else {
+        var charsNeeded = 10 - blogId.length;
+        output.innerHTML = `Input must be at least 19 characters.\nCurrently, you have entered ${blogId.length} characters.\nMore ${charsNeeded} Characters Needed.`;
+      }
+    })
+    .catch(error => {
+      // Handle any errors here
+      yXy.innerHTML = "Error: " + error;
+    });
+
+  if (blogId.length >= 1) {
+    clearButton.style.display = 'inline-block';
+  } else {
+    clearButton.style.display = 'none';
+  }
+}
+
+function clearInput() {
+  document.getElementById('blogId').value = "";
+  document.getElementById('clear').style.display = 'none';
+}
+
+document.getElementById('blogId').addEventListener('input', complete);
+
+// Run complete() initially to populate the output
+complete();
+</script>
